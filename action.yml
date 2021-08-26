@@ -1,0 +1,30 @@
+name: demo-build-go
+description: 'Simple go build'
+runs:
+  using: "composite"
+  steps:
+    - name: Install Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.15.x
+
+    - name: check
+      shell: bash
+      run: |
+        echo -n "Go version set to: "
+        go version
+        
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: build
+      shell: bash
+      run: |
+        go build -o main .
+        echo "success build"
+    - name: check
+      shell: bash
+      run: |
+        stat ./main
+        echo "success check"
+ 
